@@ -1,6 +1,5 @@
-from core.config.models import ModelsParams
 from core.fdm import fdm
-
+from core.models.model_params import ModelsParams
 
 params = ModelsParams(
     fdm_schema="explicit",
@@ -9,7 +8,7 @@ params = ModelsParams(
     nodes=150,
     n_steps=600,
     name="file",
-    save=True
+    save=True,
 )
 
 matrix_result = fdm(params)

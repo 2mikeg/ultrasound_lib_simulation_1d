@@ -1,14 +1,13 @@
-from pyexpat import model
 from typing import Dict
-import pandas as pd
-from core.config.models import ModelsParams
-from core.config.config import Settings
-import numpy as np
 
-fdm_switcher: Dict = {
-    "implicit": 0,
-    "explicit": 1
-}
+import numpy as np
+import pandas as pd
+from core.config.config import Settings
+from core.models.model_params import ModelsParams
+from pyexpat import model
+
+fdm_switcher: Dict = {"implicit": 0, "explicit": 1}
+
 
 def fdm(params_models: ModelsParams) -> np.ndarray:
 
@@ -21,7 +20,7 @@ def fdm(params_models: ModelsParams) -> np.ndarray:
         n_steps=params_models.n_steps,
         name=params_models.name,
         layer_number=params_models.layer_number,
-        save=params_models.save
-        )
+        save=params_models.save,
+    )
 
     return result

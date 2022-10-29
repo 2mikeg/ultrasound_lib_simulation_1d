@@ -1,5 +1,7 @@
-from typing import List, Optional
+from typing import List
+
 from pydantic import BaseModel
+
 
 class ModelsParams(BaseModel):
     fdm_schema: str
