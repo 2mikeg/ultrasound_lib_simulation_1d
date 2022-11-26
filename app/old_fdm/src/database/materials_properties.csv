@@ -1,0 +1,27 @@
+﻿Type,Composition,state,bulk_modulus,shear_modulus,e_modulus,density,thickness
+case,stainless steel,Solido,Null,Null,5.15E+11,7930,500
+separator,polymer,Solido,Null,Null,7.00E+08,550,25
+positive_colector,aluminum,Solido,Null,Null,1.17E+11,8960,10
+negative_colector,copper,Solido,Null,Null,69000000000,2700,10
+cathode_0,LiCoO2,Solido,Null,Null,1.085E+11,5010,59
+cathode_01,LiCoO2,Solido,Null,Null,1.2286E+11,5002,59
+cathode_02,LiCoO2,Solido,Null,Null,1.3722E+11,4994,59
+cathode_03,LiCoO2,Solido,Null,Null,1.5158E+11,4986,59
+cathode_04,LiCoO2,Solido,Null,Null,1.6594E+11,4978,59
+cathode_05,LiCoO2,Solido,Null,Null,1.803E+11,4970,59
+cathode_06,LiCoO2,Solido,Null,Null,1.9466E+11,4962,59
+cathode_07,LiCoO2,Solido,Null,Null,2.0902E+11,4954,59
+cathode_08,LiCoO2,Solido,Null,Null,2.2338E+11,4946,59
+cathode_09,LiCoO2,Solido,Null,Null,2.3774E+11,4938,59
+cathode_10,LiCoO2,Solido,Null,Null,2.521E+11,4930,59
+anode_0,C,Solido,Null,Null,1.93E+10,2050,66
+anode_01,LiC,Solido,Null,Null,2.75E+10,2071,66.5
+anode_02,LiC,Solido,Null,Null,3.57E+10,2092,67
+anode_03,LiC,Solido,Null,Null,4.39E+10,2113,67.5
+anode_04,LiC,Solido,Null,Null,5.21E+10,2134,68
+anode_05,LiC,Solido,Null,Null,6.04E+10,2155,68.5
+anode_06,LiC,Solido,Null,Null,6.86E+10,2176,69
+anode_07,LiC,Solido,Null,Null,7.68E+10,2197,69.5
+anode_08,LiC,Solido,Null,Null,8.50E+10,2218,70
+anode_09,LiC,Solido,Null,Null,9.33E+10,2239,70.5
+anode_10,LiC,Solido,Null,Null,1.01E+11,2260,71
