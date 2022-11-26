@@ -1,18 +1,12 @@
-from typing import List, Optional
-
 import numpy as np
 import pandas as pd
-from core.models.material_constructor import Material
+
+# from src.implicit.material_constructor import Material
+from app.core.config.config import FDMSchemas
+from app.core.models.big_bang import BigBang
 
 
-def big_bang(
-    indexes: List,
-    df: pd.DataFrame,
-    nodes: int,
-    battery_map: List,
-    dt: float,
-    coefficiens: Optional[bool] = False,
-):
+def big_bang(indexes, df, nodes, battery_map, dt, schema: FDMSchemas) -> BigBang:
 
     materials = []  # Material type present in the test (str)
     materials_summary = []  # Material instantiation
@@ -25,9 +19,12 @@ def big_bang(
     materials_e_modulus = []  # e_modulus for each index
     summary_e_modulus = []  # e_modulus for the map
     materials_gamma = []
-    gamma_map = []
+
+    gamma_map = None
+    phi_map = None
+
     materials_phi = []
-    phi_map = []
+
     # Obtaining the materials type
     for i in range(materials_number):
         idx = indexes[i]  # takes index i
@@ -101,20 +98,35 @@ def big_bang(
     dx = dimensionless_length / (nodes - 1)
     x = np.linspace(0, dimensionless_length, nodes)
 
-    for _gamma_phi in range(materials_number):
-        materials_summary[_gamma_phi].gamma_phi_m(dt, dx)
-        gamma = materials_summary[_gamma_phi].gamma
-        phi = materials_summary[_gamma_phi].phi
-        materials_gamma.append(gamma)
-        materials_phi.append(phi)
+    if schema == FDMSchemas.Implicit:  # Implicito
 
-    gamma_dict = dict(zip(indexes, materials_gamma))
-    phi_dict = dict(zip(indexes, materials_phi))
-    for _gamma_phi in range(len(battery_map)):
-        _id = battery_map[_gamma_phi]
-        gamma = gamma_dict[_id]
-        phi = phi_dict[_id]
-        gamma_map.append(gamma)
-        phi_map.append(phi)
+        _gamma_map = []
+        _phi_map = []
 
-    return x, interphase_position, _e_modulus_dict, gamma_map, phi_map
+        for _gamma_phi in range(materials_number):
+            materials_summary[_gamma_phi].gamma_phi_m(dt, dx)
+            gamma = materials_summary[_gamma_phi].gamma
+            phi = materials_summary[_gamma_phi].phi
+            materials_gamma.append(gamma)
+            materials_phi.append(phi)
+
+        gamma_dict = dict(zip(indexes, materials_gamma))
+        phi_dict = dict(zip(indexes, materials_phi))
+        for _gamma_phi in range(len(battery_map)):
+            _id = battery_map[_gamma_phi]
+            gamma = gamma_dict[_id]
+            phi = phi_dict[_id]
+            _gamma_map.append(gamma)
+            _phi_map.append(phi)
+
+        _gamma_map = gamma_map
+        _phi_map = phi_map
+
+    return BigBang(
+        x=x,
+        interphase_position=interphase_position,
+        e_modulus=_e_modulus_dict,
+        materials_summary=materials_summary,
+        gamma_map=gamma_map,
+        phi_map=phi_map,
+    )
