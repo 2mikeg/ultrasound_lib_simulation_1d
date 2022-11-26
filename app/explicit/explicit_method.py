@@ -16,3 +16,5 @@ def fdm_explicit(
 ):
 
     battery_map = battery_structure(indexes=indexes, layer_number=layer_number)
+
+    

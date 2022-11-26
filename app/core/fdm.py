@@ -4,16 +4,22 @@ import numpy as np
 import pandas as pd
 from core.config.config import Settings
 from core.models.model_params import ModelsParams
-from pyexpat import model
+from explicit.explicit_method import fdm_explicit
+from implicit.implicit_method import fdm_implicit
 
-fdm_switcher: Dict = {"implicit": 0, "explicit": 1}
+from app.core.config.config import FDMSchemas
+
+fdm_switcher: Dict = {
+    FDMSchemas.Implicit.value: fdm_implicit,
+    FDMSchemas.Explicit.value: fdm_explicit,
+}
 
 
 def fdm(params_models: ModelsParams) -> np.ndarray:
 
     database: pd.DataFrame = pd.read_csv(Settings.DB_PATH)
 
-    result = fdm_switcher.get(params_models.fdm_schema, NotImplemented)(
+    result = fdm_switcher.get(params_models.fdm_schema.value, NotImplemented)(
         indexes=params_models.indexes,
         database=database,
         nodes=params_models.nodes,

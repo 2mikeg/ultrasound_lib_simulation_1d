@@ -1,8 +1,18 @@
+from typing import List, Optional
+
 import numpy as np
+import pandas as pd
 from core.models.material_constructor import Material
 
 
-def big_bang(indexes, df, nodes, battery_map, dt):
+def big_bang(
+    indexes: List,
+    df: pd.DataFrame,
+    nodes: int,
+    battery_map: List,
+    dt: float,
+    coefficiens: Optional[bool] = False,
+):
 
     materials = []  # Material type present in the test (str)
     materials_summary = []  # Material instantiation
