@@ -23,8 +23,8 @@ method_switcher = {
 }
 # Numerical Methods
 main_path = os.path.dirname(__file__)
-saving_path = 'src/result_processing/Simulation'
-url = './src/database/materials_properties.csv'
+saving_path = 'app/src/result_processing/Simulation'
+url = './app/src/database/materials_properties.csv'
 initial_velocity = 1
 df = pd.read_csv(url)
 indexes = [4,15]  # materials definition discharged
